@@ -4,3 +4,4 @@ npm-debug.*
 Thumbs.db
 .vscode
 node_modules/
+build/
