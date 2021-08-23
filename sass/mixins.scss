@@ -44,3 +44,7 @@
   clip: rect(0,0,0,0);
   overflow: hidden;
 }
+
+@mixin dynamicText($min-size-percent, $max-size, $min-size, $min-width-px, $max-width, $min-width) {
+  font-size: calc(#{$min-size-percent} + (#{$max-size} - #{$min-size}) * (100vw - #{$min-width-px})/ (#{$max-width} - #{$min-width}));
+}
