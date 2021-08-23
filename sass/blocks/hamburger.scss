@@ -1,0 +1,85 @@
+$hamburger-color: #e9eae2;
+$hamburger-color-active: #f8c255;
+
+.hamburger {
+    background: none;
+    display: block;
+    cursor: pointer;
+    border: 3px solid $hamburger-color;
+    transition: border-color 0.5s;
+
+    &:hover,
+    &:active {
+        border-color: $hamburger-color-active;
+
+        .hamburger__element {
+            background-color: $hamburger-color-active;
+            &::before,
+            &::after  {
+                background-color: $hamburger-color-active;
+            }
+        }
+    }
+
+    &:focus {
+        border-color: $hamburger-color-active;
+    }
+}
+
+.hamburger__element {
+    width: 40px;
+    height: 3px;
+    background-color: $hamburger-color;
+    display: block;
+    margin: 0 auto;
+    transition: background-color 0.5s;
+
+    &::before,
+    &::after {
+        content: "";
+        width: 40px;
+        height: 3px;
+        background-color: $hamburger-color;
+        display: block;
+        margin: 0 auto;
+        transition: background-color 0.5s;
+    }
+    &::before {
+        transform: translateY(-7px);
+    }
+    &::after {
+        transform: translateY(4px);
+    }
+}
+
+.hamburger--active {
+    position: relative;
+    z-index: 1;
+    border-color: $hamburger-color-active;
+
+    &:hover,
+    &:active {
+        border-color: $hamburger-color-active;
+
+        .hamburger__element {
+            background-color: $hamburger-color;
+            &::before,
+            &::after  {
+                background-color: $hamburger-color;
+            }
+        }
+    }
+
+    .hamburger__element {
+        transform: rotate(45deg);
+
+        &:after {
+            transform: rotate(-90deg);
+            position: relative;
+            z-index: 1;
+        }
+        &:before {
+            display: none;
+        }
+    }
+}
