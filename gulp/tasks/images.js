@@ -1,6 +1,6 @@
 module.exports = function () {
   $.gulp.task('images', function () {
-    return $.gulp.src('build/img/**/*.{png,jpg,svg}')
+    return $.gulp.src('docs/img/**/*.{png,jpg,svg}')
         .pipe($.gp.imagemin([
           $.gp.imagemin.jpegtran({progressive: true}),
           $.imageminJpegRecompress({
@@ -13,6 +13,6 @@ module.exports = function () {
           $.pngquant({quality: '65-70', speed: 5}),
           $.gp.imagemin.svgo()
         ]))
-        .pipe($.gulp.dest('build/img'));
+        .pipe($.gulp.dest('docs/img'));
   });
 };

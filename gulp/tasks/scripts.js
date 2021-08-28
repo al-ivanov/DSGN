@@ -13,7 +13,7 @@ module.exports = function () {
         .pipe($.gp.uglify())
         .pipe($.gp.rename('all.min.js'))
         .pipe($.gp.sourcemaps.write(''))
-        .pipe($.gulp.dest('build/js'))
+        .pipe($.gulp.dest('docs/js'))
         .pipe($.browserSync.stream());
   });
 };

@@ -7,6 +7,6 @@ module.exports = function () {
     ], {
       base: '.'
     })
-        .pipe($.gulp.dest('build'));
+        .pipe($.gulp.dest('docs'));
   });
 };
