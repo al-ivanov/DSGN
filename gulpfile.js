@@ -4,7 +4,7 @@ global.$ = {
   browserSync: require('browser-sync').create(),
   del: require('del'),
   imageminJpegRecompress: require('imagemin-jpeg-recompress'),
-  pngquant: require('imagemin-pngquant'),
+  pngquant: require('imagemin-pngquant').default,
   path: {
     config: require('./gulp/config'),
     jquery: './js/jquery.js',

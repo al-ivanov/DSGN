@@ -3,5 +3,6 @@ node_modules/
 npm-debug.*
 Thumbs.db
 .vscode
+.DS_Store
 node_modules/
 build/
