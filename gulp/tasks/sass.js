@@ -1,17 +1,23 @@
-module.exports = function () {
-  const sass = require('gulp-sass')(require('sass'));
-  const autoprefixer = require('gulp-autoprefixer').default;
+const plumber = require('gulp-plumber');
+const sourcemaps = require('gulp-sourcemaps');
+const sassCompiler = require('gulp-sass')(require('sass'));
+const autoprefixer = require('gulp-autoprefixer').default;
+const csso = require('gulp-csso');
+const rename = require('gulp-rename');
 
-  $.gulp.task('sass', function () {
-    return $.gulp.src('sass/style.scss')
-        .pipe($.gp.plumber())
-        .pipe($.gp.sourcemaps.init())
-        .pipe(sass())
-        .pipe(autoprefixer())
-        .pipe($.gp.csso())
-        .pipe($.gp.rename('style.min.css'))
-        .pipe($.gp.sourcemaps.write(''))
-        .pipe($.gulp.dest('build/css'))
-        .pipe($.browserSync.stream());
-  });
+module.exports = function (gulp, {browserSync, paths}) {
+  function sass() {
+    return gulp.src(paths.src.sass)
+      .pipe(plumber())
+      .pipe(sourcemaps.init())
+      .pipe(sassCompiler())
+      .pipe(autoprefixer())
+      .pipe(csso())
+      .pipe(rename('style.min.css'))
+      .pipe(sourcemaps.write(''))
+      .pipe(gulp.dest(paths.dest.css))
+      .pipe(browserSync.stream());
+  }
+
+  return sass;
 };

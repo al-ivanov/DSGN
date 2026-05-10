@@ -1,7 +1,7 @@
-module.exports = function () {
-  const del = require('del');
+module.exports = function (gulp, {del, paths}) {
+  function clean() {
+    return del(paths.dest.build);
+  }
 
-  $.gulp.task('clean', function () {
-    return del('build');
-  });
+  return clean;
 };

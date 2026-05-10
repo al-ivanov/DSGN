@@ -1,9 +1,11 @@
-module.exports = function () {
-  const webp = require('gulp-webp').default;
+const webp = require('gulp-webp').default;
 
-  $.gulp.task('webp', function () {
-    return $.gulp.src('build/img/**/*.{png,jpg}')
-        .pipe(webp({quality: 90}))
-        .pipe($.gulp.dest('build/img'));
-  });
+module.exports = function (gulp, {paths}) {
+  function webpTask() {
+    return gulp.src(`${paths.dest.img}/**/*.{png,jpg}`)
+      .pipe(webp({quality: 90}))
+      .pipe(gulp.dest(paths.dest.img));
+  }
+
+  return webpTask;
 };

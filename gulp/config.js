@@ -1,13 +1,16 @@
-module.exports = [
-  './gulp/tasks/sass',
-  './gulp/tasks/scripts',
-  './gulp/tasks/copy',
-  './gulp/tasks/clean',
-  './gulp/tasks/allimg',
-  './gulp/tasks/html',
-  './gulp/tasks/images',
-  './gulp/tasks/serve',
-  './gulp/tasks/webp',
-  './gulp/tasks/svg',
-  './gulp/tasks/build',
-];
+module.exports = {
+  src: {
+    html: '*.html',
+    sass: 'sass/style.scss',
+    js: './js/**/*.js',
+    jquery: './js/jquery.js',
+    img: 'img/**/*.{jpg,png,svg}',
+    svg: 'img/**/*.svg'
+  },
+  dest: {
+    build: 'build',
+    css: 'build/css',
+    js: 'build/js',
+    img: 'build/img'
+  }
+};

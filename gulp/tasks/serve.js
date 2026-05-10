@@ -1,12 +1,14 @@
-module.exports = function () {
-  $.gulp.task('serve', function () {
-    $.browserSync.init({
-      server: 'build/'
+module.exports = function (gulp, {browserSync, html, sass, scripts, allimg, paths}) {
+  function serve() {
+    browserSync.init({
+      server: paths.dest.build
     });
 
-    $.gulp.watch('sass/**/*.scss', $.gulp.series('sass'));
-    $.gulp.watch('*.html', $.gulp.series('html'));
-    $.gulp.watch('js/**/*.js', $.gulp.series('scripts'));
-    $.gulp.watch('img/**/*.{png,jpg,svg}', $.gulp.series('allimg'));
-  });
+    gulp.watch('sass/**/*.scss', sass);
+    gulp.watch('*.html', html);
+    gulp.watch('js/**/*.js', scripts);
+    gulp.watch(paths.src.img, allimg);
+  }
+
+  return serve;
 };

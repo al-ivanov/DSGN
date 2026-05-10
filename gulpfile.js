@@ -1,17 +1,29 @@
-global.$ = {
-  gulp: require('gulp'),
-  gp: require('gulp-load-plugins')(),
-  browserSync: require('browser-sync').create(),
-  del: require('del'),
-  imageminJpegRecompress: require('imagemin-jpeg-recompress'),
-  pngquant: require('imagemin-pngquant').default,
-  path: {
-    config: require('./gulp/config'),
-    jquery: './js/jquery.js',
-    js: './js/**/*.js',
-  }
-};
+const gulp = require('gulp');
+const browserSync = require('browser-sync').create();
+const del = require('del');
+const paths = require('./gulp/config');
 
-$.path.config.forEach(function (path) {
-  require(path)();
-});
+const clean = require('./gulp/tasks/clean')(gulp, {del, paths});
+const copy = require('./gulp/tasks/copy')(gulp, {paths});
+const allimg = require('./gulp/tasks/allimg')(gulp, {paths});
+const html = require('./gulp/tasks/html')(gulp, {browserSync, paths});
+const sass = require('./gulp/tasks/sass')(gulp, {browserSync, paths});
+const scripts = require('./gulp/tasks/scripts')(gulp, {browserSync, paths});
+const images = require('./gulp/tasks/images')(gulp, {paths});
+const webp = require('./gulp/tasks/webp')(gulp, {paths});
+const svg = require('./gulp/tasks/svg')(gulp, {paths});
+const build = require('./gulp/tasks/build')(gulp, {clean, copy, sass, scripts, images, webp, svg});
+const serve = require('./gulp/tasks/serve')(gulp, {browserSync, html, sass, scripts, allimg, paths});
+
+exports.clean = clean;
+exports.copy = copy;
+exports.allimg = allimg;
+exports.html = html;
+exports.sass = sass;
+exports.scripts = scripts;
+exports.images = images;
+exports.webp = webp;
+exports.svg = svg;
+exports.build = build;
+exports.serve = serve;
+exports.default = build;
